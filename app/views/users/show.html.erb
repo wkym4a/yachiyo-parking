@@ -1,0 +1,50 @@
+<!-- メッセージとか -->
+<p id="notice"><%= notice %></p>
+<%= render 'layouts/show_danger_msg' %>
+
+<div class="line_info">
+  <div class="line_content_1">
+    <strong>管理業者名:</strong>
+    <%= @user.name %>
+  </div>
+</div>
+
+<div class="line_info">
+  <div class="line_content_1">
+    <strong>メール:</strong>
+    <%= @user.email %>
+  </div>
+</div>
+
+<div class="line_info">
+  <div class="line_content_1">
+    <strong>住所:</strong>
+    <%= @user.address %>
+  </div>
+</div>
+
+<div class="line_info">
+  <div class="line_content_1">
+    <strong>緯度:</strong>
+    <%= @user.lat %>
+  </div>
+  <div class="line_content_2">
+    <strong>緯度:</strong>
+    <%= @user.lon %>
+  </div>
+</div>
+
+
+<div class="line_info">
+  <div class="line_content_1">
+    <strong>HP:</strong>
+    <%= @user.url %>
+  </div>
+</div>
+
+<div class="line_info">
+    <%= link_to "編集", edit_user_path(@user.id), class: 'btn btn-primary btn_line_2' %>
+
+    <%= link_to "重要情報変更", edit_user_registration_path(@user.id), class: 'btn btn-primary btn_line_1'  %>
+
+</div>

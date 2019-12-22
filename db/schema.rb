@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_20_053139) do
+ActiveRecord::Schema.define(version: 2019_12_22_065823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "parkings", force: :cascade do |t|
+    t.string "symbol", limit: 2, null: false
+    t.string "name", limit: 40, null: false
+    t.string "address", limit: 255, null: false
+    t.float "lat", null: false
+    t.float "lon", null: false
+    t.integer "price", null: false
+    t.string "memo", limit: 400, null: false
+    t.text "managing_memo", null: false
+    t.integer "number", null: false
+    t.integer "empty_number", null: false
+    t.integer "status", limit: 2, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_parkings_on_user_id"
+  end
 
   create_table "tests", force: :cascade do |t|
     t.string "cd"
@@ -31,8 +49,14 @@ ActiveRecord::Schema.define(version: 2019_12_20_053139) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin_flg"
+    t.string "name", limit: 40, default: "", null: false
+    t.string "address", limit: 255, default: "", null: false
+    t.float "lat", default: 0.0, null: false
+    t.float "lon", default: 0.0, null: false
+    t.string "url", limit: 4096, default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "parkings", "users"
 end
