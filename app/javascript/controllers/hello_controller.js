@@ -9,15 +9,29 @@
 
 import { Controller } from "stimulus"
 
+// add
+import { gr2 } from "./h_test"
+import { gr22 } from "../tt/test"
+
 export default class extends Controller {
   static targets = [ "name" ]
 
+
+
+  initialize() {
+    console.log(this.name)
+  }
+
+
+
   greet() {
-    console.log(`Hello, ${this.name}!`)
+    console.log(`Hello, ${this.name}!3`)
+      gr22(this.nameTarget,"!!??");
   }
 
   get name() {
     return this.nameTarget.value
+    // return this.nameTarget.value + "eeee"
   }
 }
 
