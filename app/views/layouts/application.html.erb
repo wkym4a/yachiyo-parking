@@ -14,6 +14,9 @@
   </head>
 
   <body>
+    <%# IEの場合、「非対応」である旨をメッセージで出す %>
+    <script src="https://cdn.jsdelivr.net/npm/ie-buster@1.1.0/dist/ie-buster.min.js"></script>
+
     <% if user_signed_in? %>
 
       <a>ログインしています</a>
