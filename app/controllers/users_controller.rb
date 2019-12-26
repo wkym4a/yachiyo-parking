@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params_for_update)
+      binding.pry
       redirect_to @user, notice: 'ユーザー情報を変更しました。'
     else
       #エラー情報をフラッシュに保存
