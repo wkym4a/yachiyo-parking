@@ -19,11 +19,15 @@
       <%= form.text_field :name ,class: "line_content_2_large_interval" ,maxlength: 40 %>
     </div>
 
-    <div data-controller="set-pin"">
-      <%= form.hidden_field :flg,:value => true ,:data => {:target => "set-pin.flg"} %>
+    <span data-controller="set-pin"">
+
+      <%# flg→初期表示時にjs側で再設定するため、viwe側の設定ではvalue=false %>
+      <%# …………ロード時に動くjsでvalue=trueとする %>
+      <%= form.hidden_field :flg,:value => false ,:data => {:target => "set-pin.flg"} %>
 
       <div  id = "map" class="user_edit_map" data-target="set-pin.map"></div>
 
+      <%= render 'layouts/shared/yahoo_attribution' %>
 
       <div class="bisecting_box">
         <div class="bisecting_1">
@@ -43,9 +47,9 @@
 
       <div class="line_info">
          【📍位置確定処理】
-         <a id="btn_set_address_by_latlon" class='btn btn-primary' data-action="set-pin#set_address_by_latlng" data-target="set-pin.btn_set">座標<br>↓<br>住所</a>
+         <a id="btn_set_address_by_latlon" class='btn btn-primary' data-action="set-pin#set_address_by_latlon" data-target="set-pin.btn_set">座標<br>↓<br>住所</a>
 
-         <a id="btn_set_latlon_by_address" class='btn btn-primary' data-action="set-pin#set_latlon_by_address" data-target="set-pin.btn_set">住所<br>↑<br>座標</a>
+         <a id="btn_set_latlon_by_address" class='btn btn-primary' data-action="set-pin#set_latlon_by_address" data-target="set-pin.btn_set">座標<br>↑<br>住所</a>
 
          <a id="btn_reset_latlon" class='btn btn-primary' data-action="set-pin#reset_latlon" data-target="set-pin.btn_reset">座標確定解除</a>
       </div>
@@ -63,16 +67,15 @@
         <%= form.text_field :address ,class: "line_content_2_large_interval",maxlength: 255 ,:data => {:target => "set-pin.address"}%>
       </div>
 
-    </div>
 
-    <div class="line_info">
-      <%= form.label "ホームページアドレス" ,class: "line_content_1" %>
-      <%= form.text_field :url ,class: "line_content_2_large_interval",maxlength: 4096 %>
-    </div>
+      <div class="line_info">
+        <%= form.label "ホームページアドレス" ,class: "line_content_1" %>
+        <%= form.text_field :url ,class: "line_content_2_large_interval",maxlength: 4096 %>
+      </div>
 
-    <div class="line_info">
-      <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn'%>
-    </div>
-
+      <div class="line_info">
+        <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn' ,:data => {:target => "set-pin.btn_save"} %>
+      </div>
+    </span>
   <% end %>
 </div>

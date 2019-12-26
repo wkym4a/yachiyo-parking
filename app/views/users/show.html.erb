@@ -23,17 +23,24 @@
   </div>
 </div>
 
-<div class="line_info">
-  <div class="line_content_1">
-    <strong>緯度:</strong>
-    <%= @user.lat %>
-  </div>
-  <div class="line_content_2">
-    <strong>緯度:</strong>
-    <%= @user.lon %>
-  </div>
-</div>
+<span data-controller="show-one-pin"">
 
+    <div class="bisecting_box">
+      <div class="bisecting_1">
+        <strong>緯度:</strong>
+        <input type="text" value=<%= @user.lat %> data-target="show-one-pin.lat" readOnly>
+      </div>
+      <div class="bisecting_2">
+        <strong>緯度:</strong>
+        <input type="text" value=<%= @user.lon %> data-target="show-one-pin.lon" readOnly>
+      </div>
+    </div>
+
+    <div  id = "map" class="user_edit_map" data-target="show-one-pin.map"></div>
+
+    <%= render 'layouts/shared/yahoo_attribution' %>
+
+  </span>
 
 <div class="line_info">
   <div class="line_content_1">
