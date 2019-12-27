@@ -1,1 +1,36 @@
-<%= @user.name %>の駐車場情報
+
+
+<div class="smart-form ">
+
+  <div class="parking-info-1">
+    <a href="https://www.yachitaku.com/">八千代の不動産屋</a>が作った月極駐車場管理アプリ
+  </div>
+
+  <div class="container-fluid smart-form-main ">
+
+    <div class = "parking-info-2">
+      <%= @user.name %>の駐車場情報
+    </div>
+
+    <span data-controller="show-parkings">
+
+      <%= hidden_field_tag :lat,@user.lat ,:data => {:target => "show-parkings.lat"} %>
+      <%= hidden_field_tag :lon,@user.lon ,:data => {:target => "show-parkings.lon"} %>
+
+      <% @parkings.each do |parking| %>
+        <%= hidden_field_tag :parkings_id,parking.id ,:data => {:target => "show-parkings.parkings_id"} %>
+        <%= hidden_field_tag :parkings_symbol,parking.symbol ,:data => {:target => "show-parkings.parkings_symbol"} %>
+        <%= hidden_field_tag :parkings_lat,parking.lat ,:data => {:target => "show-parkings.parkings_lat"} %>
+        <%= hidden_field_tag :parkings_lon,parking.lon ,:data => {:target => "show-parkings.parkings_lon"} %>
+      <% end %>
+
+      <div  id = "map"  class = "parking-info-3" data-target="show-parkings.map">
+      </div>
+    </span>
+
+    <div class = "parking-info-4">
+    </div>
+
+
+  </div>
+</div>

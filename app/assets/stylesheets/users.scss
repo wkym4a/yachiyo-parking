@@ -7,3 +7,38 @@ width:500px;
   // margin:0 auto;
   height: 300px;
 }
+
+
+
+// 【駐車場情報画面】→スマートフォン対応
+
+.smart-form{
+  height: 100vh;
+}
+
+.smart-form-main{
+  font-size:3rem;/* 16px*/
+  line-height: 2;
+    height: calc(100% - 30px);
+}
+
+.parking-info-1{
+  height: 30px;
+    background-color: blue;
+}
+
+.container-fluid{
+}
+
+.parking-info-2{
+  height: 90px;
+    background-color: red;
+}
+.parking-info-3{
+  height: calc(100% - 210px);
+    background-color: blue;
+}
+.parking-info-4{
+  height: 90px;
+    background-color: red;
+}

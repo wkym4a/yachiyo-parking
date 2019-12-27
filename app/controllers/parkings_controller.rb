@@ -6,14 +6,10 @@ class ParkingsController < ApplicationController
 
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
 
-  # GET /parkings
-  # GET /parkings.json
   def index
-    @parkings = Parking.all
+    @parkings = Parking.all.where(user_id: current_user.id)
   end
 
-  # GET /parkings/1
-  # GET /parkings/1.json
   def show
   end
 

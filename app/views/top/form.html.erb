@@ -1,0 +1,22 @@
+<h3>管理業者用ページ</h3>
+
+<% if user_signed_in? %>
+  <h4>ログインしています。</h4>
+
+  <div class="line_info">
+    <%= link_to "ユーザー情報", user_path(current_user.id), class: 'btn btn-primary line_content_btn_3'  %>
+  </div>
+
+  <div class="line_info">
+    <%= link_to "管理している駐車場情報", parkings_path, class: 'btn btn-primary line_content_btn_3'  %>
+  </div>
+
+  <div class="line_info">
+    <%= link_to "駐車場表示画面へ", parking_info_user_path(current_user.id), class: 'btn btn-primary line_content_btn_3'  %>
+  </div>
+
+<% else %>
+  <h4>まずはログインしてください。</h4>
+
+
+<% end %>

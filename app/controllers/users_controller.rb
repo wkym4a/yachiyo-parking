@@ -25,7 +25,8 @@ class UsersController < ApplicationController
   #対象業者の駐車場状況確認画面
   #……ログインしていなくても、誰でも見れる
   def parking_info
-
+    @parkings = @user.parkings
+    # binding.pry
   end
 
   private
