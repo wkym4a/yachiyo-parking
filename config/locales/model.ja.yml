@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
+  enums:
+    parking:
+      status:
+        has_empty: 空き有り
+        will_empty: 空き予定
+        no_empty: 空き無し

@@ -21,9 +21,9 @@
 
     <span data-controller="set-pin"">
 
-      <%# flg→初期表示時にjs側で再設定するため、viwe側の設定ではvalue=false %>
-      <%# …………ロード時に動くjsでvalue=trueとする %>
-      <%= form.hidden_field :flg,:value => false ,:data => {:target => "set-pin.flg"} %>
+      <%# decided_flg→画面初期状態で座標が決定されているかどうか %>
+      <%# ユーザー更新画面ではすでに座標登録されているので「true」 %>
+      <%= form.hidden_field :decided_flg,:value => true ,:data => {:target => "set-pin.decided_flg"} %>
 
       <div  id = "map" class="user_edit_map" data-target="set-pin.map"></div>
 

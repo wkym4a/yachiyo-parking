@@ -1,0 +1,77 @@
+<%= form_with(model: parking, local: true) do |form| %>
+  <% if parking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(parking.errors.count, "error") %> prohibited this parking from being saved:</h2>
+
+      <ul>
+        <% parking.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :symbol %>
+    <%= form.text_field :symbol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lat %>
+    <%= form.text_field :lat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lon %>
+    <%= form.text_field :lon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memo %>
+    <%= form.text_field :memo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :managing_memo %>
+    <%= form.text_area :managing_memo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :empty_number %>
+    <%= form.number_field :empty_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

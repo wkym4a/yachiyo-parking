@@ -1,6 +1,9 @@
 class ParkingsController < ApplicationController
+  #ログインしているかどうかをチェック
   before_action :authenticate_user!
-  
+  #ログインしているユーザーの駐車場情報を開こうとしているかどうかをチェック
+  before_action :authenticate_users_parking!, only: [:show, :edit, :update, :destroy]
+
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
 
   # GET /parkings
@@ -28,15 +31,19 @@ class ParkingsController < ApplicationController
   def create
     @parking = Parking.new(parking_params)
 
-    respond_to do |format|
+    @parking.user_id = current_user.id
+
+    # respond_to do |format|
       if @parking.save
-        format.html { redirect_to @parking, notice: 'Parking was successfully created.' }
-        format.json { render :show, status: :created, location: @parking }
+        redirect_to @parking, notice: '駐車場情報の作成に成功しました。'
+        # format.html { redirect_to @parking, notice: 'Parking was successfully created.' }
+        # format.json { render :show, status: :created, location: @parking }
       else
-        format.html { render :new }
-        format.json { render json: @parking.errors, status: :unprocessable_entity }
+        render :new
+        # format.html { render :new }
+        # format.json { render json: @parking.errors, status: :unprocessable_entity }
       end
-    end
+    # end
   end
 
   # PATCH/PUT /parkings/1
@@ -71,6 +78,11 @@ class ParkingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def parking_params
-      params.require(:parking).permit(:symbol, :name, :address, :lat, :lon, :price, :memo, :managing_memo, :number, :empty_number, :status, :user_id)
+      params.require(:parking).permit(:symbol, :name, :address, :lat, :lon, :price, :memo, :managing_memo, :number, :empty_number, :status)
+    end
+
+
+    def authenticate_users_parking!
+      redirect_to err_path if not current_user.id == Parking.find(params[:id]).user_id
     end
 end

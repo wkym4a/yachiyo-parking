@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   #ログインしているユーザーの情報を開こうとしているかどうかをチェック
   before_action :authenticate_users_info!, only: [:show, :edit, :update]
 
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update,:parking_info]
   def show
   end
 
@@ -20,6 +20,12 @@ class UsersController < ApplicationController
       flash[:danger] = @user.errors.full_messages
       render :edit
     end
+  end
+
+  #対象業者の駐車場状況確認画面
+  #……ログインしていなくても、誰でも見れる
+  def parking_info
+
   end
 
   private

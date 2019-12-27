@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/err', to: 'err#err'
-  
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # devise_for :users
@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   registrations: "users/registrations",
 }
   # ユーザープロフィール画面は独自に作成する
-  resources :users, only: [:show,:edit,:update]
+  resources :users, only: [:show,:edit,:update] do
+    member do
+      get :parking_info
+    end
+  end
 
   resources :parkings
 

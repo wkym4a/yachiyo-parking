@@ -1,77 +1,108 @@
+<!-- メッセージとか -->
+<p id="notice"><%= notice %></p>
+<%= render 'layouts/show_danger_msg' %>
+
 <%= form_with(model: parking, local: true) do |form| %>
-  <% if parking.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(parking.errors.count, "error") %> prohibited this parking from being saved:</h2>
 
-      <ul>
-        <% parking.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <div class="line_info">
+    <%= form.label "駐車場名",class: "line_content_1"   %>
+    <%= form.text_field :name ,class: "line_content_2_large_interval" ,maxlength: 40 %>
+  </div>
+
+  <div class="line_info">
+    <%= form.label "表示番号",class: "line_content_1"   %>
+    <%= form.text_field :symbol ,class: "line_content_2_large_interval" ,maxlength: 2 %>
+  </div>
+
+  <span data-controller="set-pin"">
+    <%# decided_flg→画面初期状態で座標が決定されているかどうか %>
+    <%# 新規画面ではまだ座標登録されていないので「false」 %>
+    <%# 更新画面ではすでに座標登録されているので「true」 %>
+    <% if request.path_info == "/parkings/new" %>
+    <%= form.hidden_field :decided_flg,:value => false ,:data => {:target => "set-pin.decided_flg"} %>
+    <% else %>
+    <%= form.hidden_field :decided_flg,:value => true ,:data => {:target => "set-pin.decided_flg"} %>
+    <% end %>
+
+
+    <div  id = "map" class="user_edit_map" data-target="set-pin.map"></div>
+
+    <%= render 'layouts/shared/yahoo_attribution' %>
+
+    <div class="bisecting_box">
+      <div class="bisecting_1">
+        <%= form.label "緯度" %>
+        <%= form.text_field :lat ,:data => {:target => "set-pin.lat"} %>
+      </div>
+
+      <div class="bisecting_2">
+        <%= form.label "経度" %>
+        <%= form.text_field :lon ,:data => {:target => "set-pin.lon"} %>
+      </div>
+
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :symbol %>
-    <%= form.text_field :symbol %>
-  </div>
+          <div class="line_info">
+          </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+    <div class="line_info">
+       【📍位置確定処理】
+       <a id="btn_set_address_by_latlon" class='btn btn-primary' data-action="set-pin#set_address_by_latlon" data-target="set-pin.btn_set">座標<br>↓<br>住所</a>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
+       <a id="btn_set_latlon_by_address" class='btn btn-primary' data-action="set-pin#set_latlon_by_address" data-target="set-pin.btn_set">座標<br>↑<br>住所</a>
 
-  <div class="field">
-    <%= form.label :lat %>
-    <%= form.text_field :lat %>
-  </div>
+       <a id="btn_reset_latlon" class='btn btn-primary' data-action="set-pin#reset_latlon" data-target="set-pin.btn_reset">座標確定解除</a>
+    </div>
 
-  <div class="field">
-    <%= form.label :lon %>
-    <%= form.text_field :lon %>
-  </div>
+    <div class="line_info">
+    </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
+    <div class="line_info">
+      <%# ↓エラーメッセージ等表示枠 %>
+      <a  data-target="set-pin.msg"></a>
+    </div>
 
-  <div class="field">
-    <%= form.label :memo %>
-    <%= form.text_field :memo %>
-  </div>
+    <div class="line_info">
+      <%= form.label "住所" ,class: "line_content_1" %>
+      <%= form.text_field :address ,class: "line_content_2_large_interval",maxlength: 255 ,:data => {:target => "set-pin.address"}%>
+    </div>
 
-  <div class="field">
-    <%= form.label :managing_memo %>
-    <%= form.text_area :managing_memo %>
-  </div>
+    <div class="line_info">
+      <%= form.label "賃料",class: "line_content_1" %>
+      <%= form.number_field :price ,class: "line_content_2_large_interval"%>
+    </div>
 
-  <div class="field">
-    <%= form.label :number %>
-    <%= form.number_field :number %>
-  </div>
+    <div class="line_info">
+      <%= form.label "備考(表示用）",class: "line_content_1" %>
+      <%= form.text_field :memo ,class: "line_content_2_large_interval"%>
+    </div>
 
-  <div class="field">
-    <%= form.label :empty_number %>
-    <%= form.number_field :empty_number %>
-  </div>
+    <div class="line_info">
+      <%= form.label "備考(管理用、非表示)",class: "line_content_1" %>
+      <%= form.text_area :managing_memo ,class: "line_content_2_large_interval"%>
+    </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
-  </div>
+    <div class="line_info">
+      <%= form.label "区画数",class: "line_content_1" %>
+      <%= form.number_field :number ,class: "line_content_2_large_interval"%>
+    </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
+    <div class="line_info">
+      <%= form.label "空き数",class: "line_content_1" %>
+      <%= form.number_field :empty_number ,class: "line_content_2_large_interval"%>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="line_info">
+      <%= form.label "状態",class: "line_content_1" %>
+      <%= form.select :status, Parking.statuses.keys.map{|k| [I18n.t("enums.parking.status.#{k}"),k]} , {} ,class: "line_content_2_large_interval"%>
+      <%# <%= form.select :status, Parking.statuses.keys.to_a, {} ,class: "line_content_2_large_interval"%>
+    </div>
+
+    </div>
+
+    <div class="line_info">
+      <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn' ,:data => {:target => "set-pin.btn_save"} %>
+    </div>
+
+  </span>
 <% end %>

@@ -1,17 +1,22 @@
 import { Controller } from "stimulus"
 
-import { map_default_setting , map_btn_setting , map_make_one_pin_no_content ,map_delete_pins , map_set_address ,map_set_latlon } from "../commons/map"
+import { decided_flg,map_default_setting , map_btn_setting , map_make_one_pin_no_content ,map_delete_pins , map_set_address ,map_set_latlon } from "../commons/map"
 
 // 📍保存用の枠
 var pin_box = [];
 
 // 座標が確定されているかどうが」のフラグ
-var latlng_decided_flg = [false];
+var latlng_decided_flg
+// var latlng_decided_flg = [false];
 
 export default class extends Controller {
-  static targets = ["flg","map","lat","lon","btn_set","btn_reset","address","btn_save","msg" ]
+  static targets = ["decided_flg","map","lat","lon","btn_set","btn_reset","address","btn_save","msg" ]
 
     connect(e) {
+
+      // 初期表示時に「map_btn_setting（ここでflgを反転させる）」を通すので、ここではTFを反転させた値を取得。
+      latlng_decided_flg = [this.decided_flgTarget.value!=='true'];
+
       this.map = new Y.Map(this.mapTarget.id,{configure : {
                   scrollWheelZoom : true
                 }});

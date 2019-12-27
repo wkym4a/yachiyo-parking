@@ -28,6 +28,9 @@ gem 'dotenv-rails'
 #フォントによるエラー対策のため追記
 gem 'font-awesome-rails'
 
+#enum用
+gem 'enum_help'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
