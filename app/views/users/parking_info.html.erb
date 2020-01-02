@@ -16,6 +16,7 @@
 
       <%= hidden_field_tag :lat,@user.lat ,:data => {:target => "show-parkings.lat"} %>
       <%= hidden_field_tag :lon,@user.lon ,:data => {:target => "show-parkings.lon"} %>
+      <%= hidden_field_tag :name,@user.name ,:data => {:target => "show-parkings.name"} %>
 
       <% @parkings.each do |parking| %>
         <%= hidden_field_tag :parkings_id,parking.id ,:data => {:target => "show-parkings.parkings_id"} %>

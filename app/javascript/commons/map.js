@@ -46,6 +46,44 @@ export function map_make_one_pin_no_content(map,lat,lon,pin_box){
 
 }
 
+// 地図に「ユーザー（管理業者）についての📍(駐車場一覧表示画面用）を作る
+export function map_make_user_pin(map,lat,lon,pin_box,title_info){
+
+// type:「id_info」が何のidなのか……"user"か"parking"
+  var current_location = new Y.LatLng(lat.value,lon.value);
+
+  var marker = new Y.Marker(current_location,{title: title_info.value});
+  // var icon = new Y.Icon('https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=' + icon_info.value +'|00BFFF|000000');
+  // var marker = new Y.Marker(current_location,{icon: icon,title: title_info.value});
+
+  map.addFeature(marker);
+
+  // // 作成したマーカーを保存
+  pin_box.push(marker);
+
+  // ピンの場所に移動
+  map.panTo(current_location, true);
+
+}
+
+// 地図に「駐車場についての📍(駐車場一覧表示画面用）」を作る
+export function map_make_parking_pin(map,lat,lon,pin_box,type,id_info){
+
+// type:「id_info」が何のidなのか……"user"か"parking"
+  var current_location = new Y.LatLng(lat.value,lon.value);
+
+  var marker = new Y.Marker(current_location);
+  // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
+  map.addFeature(marker);
+
+  // // 作成したマーカーを保存
+  pin_box.push(marker);
+
+  // ピンの場所に移動
+  map.panTo(current_location, true);
+
+}
+
 export function map_btn_setting(flg,msg,lat,lon,btn_set,btn_reset,btn_save){
   msg.text=""//メッセージ枠は空欄に戻す
 
