@@ -47,14 +47,22 @@ export function map_make_one_pin_no_content(map,lat,lon,pin_box){
 }
 
 // 地図に「ユーザー（管理業者）についての📍(駐車場一覧表示画面用）を作る
-export function map_make_user_pin(map,lat,lon,pin_box,title_info){
+export function map_make_user_pin(map,lat,lon,pin_box,title_info,address_info,url_info){
 
-// type:「id_info」が何のidなのか……"user"か"parking"
   var current_location = new Y.LatLng(lat.value,lon.value);
 
-  var marker = new Y.Marker(current_location,{title: title_info.value});
-  // var icon = new Y.Icon('https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=' + icon_info.value +'|00BFFF|000000');
-  // var marker = new Y.Marker(current_location,{icon: icon,title: title_info.value});
+  var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=管|00BFFF|000000", {iconSize: new Y.Size(90,90)});
+
+  var marker = new Y.Marker(current_location,{icon: icon,title: title_info.value});
+
+  // urlが設定されていた場合、そのページを別窓で開くようにする。
+  var url = ""
+  if(!url_info.value==false){
+    url = 'href = "' + url_info.value + '" target = "_blank"'
+  }
+
+  marker.bindInfoWindow('<div><a ' + url +  '>' + title_info.value + '</a></div><div>' + address_info.value + '</div>');
+  // marker.bindInfoWindow('<div class="speech_bubble_box"><div>aaaa</div><div>いいいいいい</div></div>');
 
   map.addFeature(marker);
 
@@ -67,20 +75,33 @@ export function map_make_user_pin(map,lat,lon,pin_box,title_info){
 }
 
 // 地図に「駐車場についての📍(駐車場一覧表示画面用）」を作る
-export function map_make_parking_pin(map,lat,lon,pin_box,type,id_info){
+export function map_make_parking_pin(map,lat,lon,pin_box,icon_info,title_info,address_info,price_info,memo_info){
 
-// type:「id_info」が何のidなのか……"user"か"parking"
   var current_location = new Y.LatLng(lat.value,lon.value);
 
-  var marker = new Y.Marker(current_location);
-  // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
-  map.addFeature(marker);
 
-  // // 作成したマーカーを保存
-  pin_box.push(marker);
+    var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=" + icon_info.value +  "|FF33CC|000000", {iconSize: new Y.Size(90,90)});
 
-  // ピンの場所に移動
-  map.panTo(current_location, true);
+    var marker = new Y.Marker(current_location,{icon: icon,title: title_info.value});
+
+    marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">aaaa</div><div class="speech_bubble_content">いいいいいい</div><div class="speech_bubble_content">uuuuうううううううう</div><div class="speech_bubble_content">いいえええええええいいいい</div></div>');
+
+    map.addFeature(marker);
+
+    // // 作成したマーカーを保存
+    pin_box.push(marker);
+
+    // ピンの場所に移動……は、しない
+
+  // var marker = new Y.Marker(current_location);
+  // // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
+  // map.addFeature(marker);
+  //
+  // // // 作成したマーカーを保存
+  // pin_box.push(marker);
+  //
+  // // ピンの場所に移動
+  // map.panTo(current_location, true);
 
 }
 

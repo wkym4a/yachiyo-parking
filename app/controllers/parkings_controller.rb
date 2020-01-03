@@ -4,6 +4,7 @@ class ParkingsController < ApplicationController
   #ログインしているユーザーの駐車場情報を開こうとしているかどうかをチェック
   before_action :authenticate_users_parking!, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_user
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -35,6 +36,8 @@ class ParkingsController < ApplicationController
         # format.html { redirect_to @parking, notice: 'Parking was successfully created.' }
         # format.json { render :show, status: :created, location: @parking }
       else
+        #エラー情報をフラッシュに保存
+        flash[:danger] = @parking.errors.full_messages
         render :new
         # format.html { render :new }
         # format.json { render json: @parking.errors, status: :unprocessable_entity }
@@ -47,11 +50,12 @@ class ParkingsController < ApplicationController
   def update
     respond_to do |format|
       if @parking.update(parking_params)
-        format.html { redirect_to @parking, notice: 'Parking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @parking }
+        redirect_to @parking, notice: '駐車場情報の更新に成功しました。'
       else
-        format.html { render :edit }
-        format.json { render json: @parking.errors, status: :unprocessable_entity }
+
+        #エラー情報をフラッシュに保存
+        flash[:danger] = @parking.errors.full_messages
+        render :edit
       end
     end
   end
@@ -68,6 +72,10 @@ class ParkingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_user
+      @user = current_user
+    end
     def set_parking
       @parking = Parking.find(params[:id])
     end

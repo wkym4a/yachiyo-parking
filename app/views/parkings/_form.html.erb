@@ -32,12 +32,24 @@
     <div class="bisecting_box">
       <div class="bisecting_1">
         <%= form.label "緯度" %>
+
+        <% if request.path_info == "/parkings/new" %>
+        <%= form.text_field :lat, value: @user.lat  ,:data => {:target => "set-pin.lat"} %>
+        <% else %>
         <%= form.text_field :lat ,:data => {:target => "set-pin.lat"} %>
+        <% end %>
+
       </div>
 
       <div class="bisecting_2">
         <%= form.label "経度" %>
-        <%= form.text_field :lon ,:data => {:target => "set-pin.lon"} %>
+
+        <% if request.path_info == "/parkings/new" %>
+        <%= form.text_field :lon, value: @user.lon ,:data => {:target => "set-pin.lon"}  %>
+        <% else %>
+        <%= form.text_field :lon ,:data => {:target => "set-pin.lon"}  %>
+        <% end %>
+
       </div>
 
     </div>

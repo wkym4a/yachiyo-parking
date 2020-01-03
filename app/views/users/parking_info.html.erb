@@ -17,12 +17,17 @@
       <%= hidden_field_tag :lat,@user.lat ,:data => {:target => "show-parkings.lat"} %>
       <%= hidden_field_tag :lon,@user.lon ,:data => {:target => "show-parkings.lon"} %>
       <%= hidden_field_tag :name,@user.name ,:data => {:target => "show-parkings.name"} %>
+      <%= hidden_field_tag :address,@user.address ,:data => {:target => "show-parkings.address"} %>
+      <%= hidden_field_tag :url,@user.url ,:data => {:target => "show-parkings.url"} %>
 
       <% @parkings.each do |parking| %>
-        <%= hidden_field_tag :parkings_id,parking.id ,:data => {:target => "show-parkings.parkings_id"} %>
         <%= hidden_field_tag :parkings_symbol,parking.symbol ,:data => {:target => "show-parkings.parkings_symbol"} %>
         <%= hidden_field_tag :parkings_lat,parking.lat ,:data => {:target => "show-parkings.parkings_lat"} %>
         <%= hidden_field_tag :parkings_lon,parking.lon ,:data => {:target => "show-parkings.parkings_lon"} %>
+        <%= hidden_field_tag :parkings_name,parking.name ,:data => {:target => "show-parkings.parkings_name"} %>
+        <%= hidden_field_tag :parkings_address,parking.address ,:data => {:target => "show-parkings.parkings_address"} %>
+        <%= hidden_field_tag :parkings_price,parking.price ,:data => {:target => "show-parkings.parkings_price"} %>
+        <%= hidden_field_tag :parkings_memo,parking.memo ,:data => {:target => "show-parkings.parkings_memo"} %>
       <% end %>
 
       <div  id = "map"  class = "parking-info-3" data-target="show-parkings.map">
