@@ -67,6 +67,18 @@
         <%= form.text_field :address ,class: "line_content_2_large_interval",maxlength: 255 ,:data => {:target => "set-pin.address"}%>
       </div>
 
+      <div class="bisecting_box">
+        <div class="bisecting_1">
+          <%= form.label "電話" %>
+          <%= form.text_field :tel  %>
+        </div>
+
+        <div class="bisecting_2">
+          <%= form.label "FAX" %>
+          <%= form.text_field :fax  %>
+        </div>
+
+      </div>
 
       <div class="line_info">
         <%= form.label "ホームページアドレス" ,class: "line_content_1" %>
@@ -74,15 +86,17 @@
       </div>
 
       <div class="line_info">
-        <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn' ,:data => {:target => "set-pin.btn_save"} %>
+        <%= form.label "備考",class: "line_content_1" %>
+        <%= form.text_area :memo ,class: "line_content_2_large_interval"%>
+      </div>
 
+      <div class="line_info">
+        <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn_3' ,:data => {:target => "set-pin.btn_save"} %>
+        <%= link_to "重要情報変更画面へ", edit_user_registration_path(@user.id), class: 'btn btn-primary line_content_btn'  %>
       </div>
 
       <div class="line_info">
         <%= link_to "駐車場画面へ", parkings_path, class: 'btn btn-primary line_content_btn'  %>
-
-        <%= link_to "重要情報変更画面へ", edit_user_registration_path(@user.id), class: 'btn btn-primary btn_line_2'  %>
-
       </div>
     </span>
   <% end %>

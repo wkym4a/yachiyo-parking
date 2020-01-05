@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def user_params_for_update
-    params_info = params.require(:user).permit(:name,  :address, :lat, :lon, :url)
+    params_info = params.require(:user).permit(:name,  :address, :lat, :lon, :url , :tel , :fax ,:memo)
   end
 
 

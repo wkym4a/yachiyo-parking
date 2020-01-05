@@ -83,7 +83,7 @@ export default class extends Controller {
     // 「座標確定解除」処理
   reset_latlon(){
     // まだ座標が確定されていない場合は、処理せず抜ける
-    if(latlng_decided_flg[0].value==false){
+    if(latlng_decided_flg[0]==false){
       return;
     }
     // ボタン設定を行う
@@ -94,7 +94,7 @@ export default class extends Controller {
   // 【座標→住所】による「座標確定」処理
   set_address_by_latlon(){
     // すでに座標が確定されている場合は、処理せず抜ける
-    if(latlng_decided_flg[0].value==true){
+    if(latlng_decided_flg[0]==true){
       return;
       }
 
@@ -132,7 +132,7 @@ export default class extends Controller {
     // 【住所→座標】による「座標確定」処理
     set_latlon_by_address(){
       // すでに座標が確定されている場合は、処理せず抜ける
-      if(latlng_decided_flg[0].value==true){
+      if(latlng_decided_flg[0]==true){
         return;
         }
 

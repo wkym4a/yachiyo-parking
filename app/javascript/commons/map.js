@@ -61,7 +61,7 @@ export function map_make_user_pin(map,pin_info,pin_box){
     url = 'href = "' + pin_info.url.value + '" target = "_blank"'
   }
 
-  marker.bindInfoWindow('<div class="speech_bubble_box"><div class="speech_bubble_title"><a ' + url +  '  style="text-decoration: underline">' + pin_info.name.value + '</a></div><div class="speech_bubble_content">' + pin_info.address.value + '</div></div>');
+  marker.bindInfoWindow('<div class="speech_bubble_box"><div class="speech_bubble_title"><a ' + url +  '  style="text-decoration: underline">' + pin_info.name.value + '</a></div><div class="speech_bubble_content">住所：' + pin_info.address.value + '</div><div class="speech_bubble_content">電話：' + pin_info.tel.value + '</div><div class="speech_bubble_content">FAX：' + pin_info.fax.value + '</div><div class="speech_bubble_content">' + pin_info.memo.value + '</div></div>');
 
       // marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">' + pin_info.name.value +'</div><div class="speech_bubble_content">' + pin_info.status.value +'(' + pin_info.number.value +'台中、' + pin_info.empty_number.value +'台空き)</div><div class="speech_bubble_content">所在地：' + pin_info.address.value +'</div><div class="speech_bubble_content">賃料：' + pin_info.price.value +'円/月</div><div class="speech_bubble_content">備考：' + pin_info.memo.value +'</div></div>');
   // marker.bindInfoWindow('<div class="speech_bubble_box"><div>aaaa</div><div>いいいいいい</div></div>');
@@ -87,7 +87,7 @@ export function map_make_parking_pin(map,pin_info,pin_box){
 
     var marker = new Y.Marker(current_location,{icon: icon,title: pin_info.name.value});
 
-    marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">' + pin_info.name.value +'</div><div class="speech_bubble_content">' + pin_info.status.value +'(' + pin_info.number.value +'台中、' + pin_info.empty_number.value +'台空き)</div><div class="speech_bubble_content">所在地：' + pin_info.address.value +'</div><div class="speech_bubble_content">賃料：' + pin_info.price.value +'円/月</div><div class="speech_bubble_content">備考：' + pin_info.memo.value +'</div></div>');
+    marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">' + pin_info.name.value +'</div><div class="speech_bubble_content">' + pin_info.status.value +'(' + pin_info.number.value +'台中、' + pin_info.empty_number.value +'台空き)</div><div class="speech_bubble_content">所在地：' + pin_info.address.value +'</div><div class="speech_bubble_content">賃料：' + pin_info.price.value +'円/月</div><div class="speech_bubble_content">' + pin_info.memo.value +'</div></div>');
 
     map.addFeature(marker);
 

@@ -7,7 +7,7 @@ var user_pin_box = [];
 var parking_pin_box = [];
 
 export default class extends Controller {
-  static targets = ["map","lat","lon","name","address","url","parkings_symbol","parkings_lat","parkings_lon","parkings_name","parkings_status","parkings_number","parkings_empty_number","parkings_address","parkings_price","parkings_memo"]
+  static targets = ["map","lat","lon","name","address","tel","fax","url","memo","parkings_symbol","parkings_lat","parkings_lon","parkings_name","parkings_status","parkings_number","parkings_empty_number","parkings_address","parkings_price","parkings_memo"]
 
     connect(e) {
 
@@ -27,7 +27,10 @@ export default class extends Controller {
       user_info.lon = this.lonTarget
       user_info.name = this.nameTarget
       user_info.address = this.addressTarget
+      user_info.tel = this.telTarget
+      user_info.fax = this.faxTarget
       user_info.url = this.urlTarget
+      user_info.memo = this.memoTarget
       map_make_user_pin(this.map,user_info,user_pin_box)
 
       // 駐車場について

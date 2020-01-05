@@ -16,6 +16,9 @@ class User < ApplicationRecord
   validates :lon, numericality: {greater_than_or_equal_to: -180,less_than_or_equal_to: 180},on: :update
   validates :address, length: {maximum:255},on: :update
   validates :url, length: {maximum:4096},on: :update
+  validates :tel, length: {maximum:20},on: :update
+  validates :fax, length: {maximum:20},on: :update
+  validates :memo, length: {maximum:400},on: :update
   ####↑↑↑↑バリデーション情報↑↑↑↑############
 
 

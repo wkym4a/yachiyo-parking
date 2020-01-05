@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_22_065823) do
+ActiveRecord::Schema.define(version: 2020_01_05_100448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,9 +51,12 @@ ActiveRecord::Schema.define(version: 2019_12_22_065823) do
     t.boolean "admin_flg"
     t.string "name", limit: 40, default: "", null: false
     t.string "address", limit: 255, default: "", null: false
-    t.float "lat", default: 0.0, null: false
-    t.float "lon", default: 0.0, null: false
+    t.float "lat", default: 35.69962509328988, null: false
+    t.float "lon", default: 140.08954485427356, null: false
     t.string "url", limit: 4096, default: "", null: false
+    t.string "tel", limit: 20, default: "", null: false
+    t.string "fax", limit: 20, default: "", null: false
+    t.text "memo", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
