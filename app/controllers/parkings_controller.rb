@@ -48,15 +48,13 @@ class ParkingsController < ApplicationController
   # PATCH/PUT /parkings/1
   # PATCH/PUT /parkings/1.json
   def update
-    respond_to do |format|
-      if @parking.update(parking_params)
-        redirect_to @parking, notice: '駐車場情報の更新に成功しました。'
-      else
+    if @parking.update(parking_params)
+      redirect_to edit_parking_path(@parking), notice: '駐車場情報の更新に成功しました。'
+    else
 
-        #エラー情報をフラッシュに保存
-        flash[:danger] = @parking.errors.full_messages
-        render :edit
-      end
+      #エラー情報をフラッシュに保存
+      flash[:danger] = @parking.errors.full_messages
+      render :edit
     end
   end
 
@@ -64,10 +62,7 @@ class ParkingsController < ApplicationController
   # DELETE /parkings/1.json
   def destroy
     @parking.destroy
-    respond_to do |format|
-      format.html { redirect_to parkings_url, notice: 'Parking was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to parkings_url, notice: 'Parking was successfully destroyed.'
   end
 
   private

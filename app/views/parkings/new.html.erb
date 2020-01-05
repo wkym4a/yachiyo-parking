@@ -1,5 +1,5 @@
-<h1>New Parking</h1>
-
-<%= render 'form', parking: @parking %>
-
-<%= link_to 'Back', parkings_path %>
+<div class="line_info">
+  <h3 class="form_title">新規駐車場作成</h3>
+  <%= link_to "駐車場一覧へ戻る", parkings_path, class: 'btn btn-primary line_content_btn'  %>
+</div>
+<%= render 'form', parking: @parking 

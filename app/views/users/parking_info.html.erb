@@ -3,7 +3,9 @@
 <div class="smart-form ">
 
   <div class="parking-info-1">
-    <a href="https://www.yachitaku.com/">八千代の不動産屋</a>が作った月極駐車場管理アプリ
+    <span class="parking-info-explain"><a href="https://www.yachitaku.com/" target="_blank">八千代台の不動産屋</a>が作った月極駐車場管理アプリ</span>
+
+    <%= link_to "● 管理会社用", root_path, class: 'for_company line_content_btn' %>
   </div>
 
   <div class="container-fluid smart-form-main ">
@@ -25,6 +27,9 @@
         <%= hidden_field_tag :parkings_lat,parking.lat ,:data => {:target => "show-parkings.parkings_lat"} %>
         <%= hidden_field_tag :parkings_lon,parking.lon ,:data => {:target => "show-parkings.parkings_lon"} %>
         <%= hidden_field_tag :parkings_name,parking.name ,:data => {:target => "show-parkings.parkings_name"} %>
+        <%= hidden_field_tag :parkings_status,parking.status_i18n ,:data => {:target => "show-parkings.parkings_status"} %>
+        <%= hidden_field_tag :parkings_number,parking.number ,:data => {:target => "show-parkings.parkings_number"} %>
+        <%= hidden_field_tag :parkings_empty_number,parking.empty_number ,:data => {:target => "show-parkings.parkings_empty_number"} %>
         <%= hidden_field_tag :parkings_address,parking.address ,:data => {:target => "show-parkings.parkings_address"} %>
         <%= hidden_field_tag :parkings_price,parking.price ,:data => {:target => "show-parkings.parkings_price"} %>
         <%= hidden_field_tag :parkings_memo,parking.memo ,:data => {:target => "show-parkings.parkings_memo"} %>
@@ -32,9 +37,11 @@
 
       <div  id = "map"  class = "parking-info-3" data-target="show-parkings.map">
       </div>
+
     </span>
 
     <div class = "parking-info-4">
+      <%= render 'layouts/shared/yahoo_attribution' %>
     </div>
 
 

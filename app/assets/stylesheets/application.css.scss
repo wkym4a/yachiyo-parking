@@ -131,10 +131,15 @@
    position: absolute;
    right:200px;
  }
-
- .input_text_name{
+.line_content_btn, .line_content_btn_2, .line_content_btn_3:visited{
+  color: white;
+  }
+a.btn-primary:visited{
+  color: white;
+}
+.input_text_name{
    width: 320px;
- }
+}
  .input_text_content{
    width: 60%;
    height: 80px;
@@ -231,3 +236,7 @@
    margin-top: 20px;
    margin-left: 30px;
  }
+
+.form_title{
+  display: inline-block;
+}

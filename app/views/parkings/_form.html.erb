@@ -107,13 +107,14 @@
     <div class="line_info">
       <%= form.label "状態",class: "line_content_1" %>
       <%= form.select :status, Parking.statuses.keys.map{|k| [I18n.t("enums.parking.status.#{k}"),k]} , {} ,class: "line_content_2_large_interval"%>
+      <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn' ,:data => {:target => "set-pin.btn_save"} %>
       <%# <%= form.select :status, Parking.statuses.keys.to_a, {} ,class: "line_content_2_large_interval"%>
     </div>
 
     </div>
 
     <div class="line_info">
-      <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn' ,:data => {:target => "set-pin.btn_save"} %>
+
     </div>
 
   </span>

@@ -7,7 +7,7 @@ var user_pin_box = [];
 var parking_pin_box = [];
 
 export default class extends Controller {
-  static targets = ["map","lat","lon","name","address","url","parkings_symbol","parkings_lat","parkings_lon","parkings_name","parkings_address","parkings_price","parkings_memo"]
+  static targets = ["map","lat","lon","name","address","url","parkings_symbol","parkings_lat","parkings_lon","parkings_name","parkings_status","parkings_number","parkings_empty_number","parkings_address","parkings_price","parkings_memo"]
 
     connect(e) {
 
@@ -22,7 +22,13 @@ export default class extends Controller {
       map_delete_pins(this.map,user_pin_box)
 
       // ピンを建てる
-      map_make_user_pin(this.map,this.latTarget,this.lonTarget,user_pin_box,this.nameTarget,this.addressTarget,this.urlTarget)
+      var user_info = {};
+      user_info.lat = this.latTarget
+      user_info.lon = this.lonTarget
+      user_info.name = this.nameTarget
+      user_info.address = this.addressTarget
+      user_info.url = this.urlTarget
+      map_make_user_pin(this.map,user_info,user_pin_box)
 
       // 駐車場について
 
@@ -33,7 +39,20 @@ export default class extends Controller {
       for (var i = 0; i < this.parkings_symbolTargets.length; i++) {
 
         // ピンを建てる
-        map_make_parking_pin(this.map,this.parkings_latTargets[i],this.parkings_lonTargets[i],parking_pin_box,this.parkings_symbolTargets[i],this.parkings_nameTargets[i],this.parkings_addressTargets[i],this.parkings_priceTargets[i],this.parkings_memoTargets[i])
+        var parking_info = {};
+        parking_info.lat = this.parkings_latTargets[i]
+        parking_info.lon = this.parkings_lonTargets[i]
+        parking_info.symbol = this.parkings_symbolTargets[i]
+        parking_info.name = this.parkings_nameTargets[i]
+        parking_info.address = this.parkings_addressTargets[i]
+        parking_info.status = this.parkings_statusTargets[i]
+        parking_info.number = this.parkings_numberTargets[i]
+        parking_info.empty_number = this.parkings_empty_numberTargets[i]
+        parking_info.price = this.parkings_priceTargets[i]
+        parking_info.memo = this.parkings_memoTargets[i]
+
+        map_make_parking_pin(this.map,parking_info,parking_pin_box)
+        // map_make_parking_pin(this.map,this.parkings_latTargets[i],this.parkings_lonTargets[i],parking_pin_box,this.parkings_symbolTargets[i],this.parkings_nameTargets[i],this.parkings_addressTargets[i],this.parkings_statusTargets[i],this.parkings_numberTargets[i],this.parkings_empty_numberTargets[i],this.parkings_priceTargets[i],this.parkings_memoTargets[i])
 
         }
       }

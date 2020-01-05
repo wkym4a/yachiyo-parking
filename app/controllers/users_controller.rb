@@ -14,7 +14,8 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params_for_update)
-      redirect_to @user, notice: 'ユーザー情報を変更しました。'
+      redirect_to edit_user_path(@user), notice: 'ユーザー情報を変更しました。'
+      # redirect_to @user, notice: 'ユーザー情報を変更しました。'
     else
       #エラー情報をフラッシュに保存
       flash[:danger] = @user.errors.full_messages
@@ -26,7 +27,6 @@ class UsersController < ApplicationController
   #……ログインしていなくても、誰でも見れる
   def parking_info
     @parkings = @user.parkings
-    # binding.pry
   end
 
   private

@@ -21,11 +21,12 @@
     <%# 閲覧用の【駐車場情報画面】以外での表示 %>
       <% if user_signed_in? %>
 
-        <a>ログインしています</a>
-        <%= current_user.name.to_s %>
+        <span>「<%= current_user.name.to_s %>」でログインしています。</span>
+        <%= link_to "ログアウトする", destroy_user_session_path, method: :delete %>
 
-        <%= link_to "プロフィール", user_path(current_user.id) %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "ユーザー情報", edit_user_path(current_user.id), class: 'btn btn-primary'  %>
+        <%= link_to "駐車場一覧", parkings_path, class: 'btn btn-primary '  %>
+        <%= link_to "駐車場表示画面へ", parking_info_user_path(current_user.id), class: 'btn btn-primary '  %>
 
       <% else %>
 
