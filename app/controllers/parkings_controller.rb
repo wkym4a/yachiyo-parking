@@ -32,7 +32,7 @@ class ParkingsController < ApplicationController
 
     # respond_to do |format|
       if @parking.save
-        redirect_to @parking, notice: '駐車場情報の作成に成功しました。'
+        redirect_to new_parking_path, notice: '駐車場情報の作成に成功しました。'
         # format.html { redirect_to @parking, notice: 'Parking was successfully created.' }
         # format.json { render :show, status: :created, location: @parking }
       else

@@ -4,3 +4,61 @@
 div p.yolp-tlchp {
   font-size: 30px;
 }
+
+
+.table_box{
+  min-width: 900px;
+  max-width: 1200px;
+  margin:  0 40px;
+  border-style: double;
+  display: flex;
+  flex-direction: column;
+
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.table_title_row > th{
+  border-style: solid;
+  border-width: 0.2px;
+  text-align: center;
+  padding: auto 0;
+}
+
+.table_row > td{
+  border-style: solid;
+  border-width: 0.2px;
+  word-break: break-all;
+  padding: auto 0;
+}
+
+.table_content_symbol{
+  min-width: 80px;
+}
+.table_content_name{
+  min-width: 120px;
+}
+.table_content_btn{
+  min-width: 40px;
+}
+.table_content_address{
+  min-width: 200px;
+}
+.table_content_price{
+  min-width: 100px;
+}
+.table_content_status{
+  min-width: 80px;
+}
+.table_content_e_num{
+  min-width: 80px;
+}
+.table_content_num{
+  min-width: 80px;
+}
+.table_content_memo{
+  min-width: 280px;
+}
+.table_content_m_memo{
+  min-width: 280px;
+}
