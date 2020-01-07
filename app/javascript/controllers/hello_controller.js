@@ -20,6 +20,8 @@ export default class extends Controller {
 
   initialize() {
     console.log(this.name)
+    
+    setTimeout( () => window.location.reload() ,8000)
   }
 
 

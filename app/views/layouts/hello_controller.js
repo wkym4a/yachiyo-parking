@@ -14,7 +14,7 @@ export default class extends Controller {
 
   initialize(e) {
 
-    setTimeout( () => window.location.reload() ,300000)
+    setTimeout( () => window.location.reload() ,8000)
 
   }
 
