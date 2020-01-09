@@ -44,7 +44,18 @@
     </span>
 
     <div class = "parking-info-4">
+      <div>
       <%= render 'layouts/shared/yahoo_attribution' %>
+      </div>
+
+      <div>
+        ・<span class="pin_sample_user"></span>→「<%= @user.name %>」店舗
+      </div>
+      <div>
+        ・<span class="pin_sample_empty"></span>→「空き有り」「空き予定」　　　　　　
+        ・<span class="pin_sample_not_empty"></span>→「空き無し」
+      </div>
+
     </div>
 
 
