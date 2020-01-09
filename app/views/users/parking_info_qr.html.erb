@@ -1,4 +1,3 @@
-
 <div class="qr_info">
-  <%= qrcode_tag request.url, module_size: 16 ,class: "qr_info" %>
+  <%= qrcode_tag request.base_url + parking_info_user_path(current_user.id), module_size: 16 ,class: "qr_info" %>
 </div>
