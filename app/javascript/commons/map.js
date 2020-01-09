@@ -17,7 +17,6 @@ export function map_default_setting(map,lat,lon){
 
 }
 
-
 // 地図から📍を消す
 export function map_delete_pins(map,pin_box){
   if(pin_box.length > 0){
@@ -27,7 +26,6 @@ export function map_delete_pins(map,pin_box){
       pin_box = [];
   }
 }
-
 
 // 地図に📍を一つ作る
 export function map_make_one_pin_no_content(map,lat,lon,pin_box){
@@ -51,7 +49,7 @@ export function map_make_user_pin(map,pin_info,pin_box){
 
   var current_location = new Y.LatLng(pin_info.lat.value,pin_info.lon.value);
 
-  var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=管|00BFFF|000000", {iconSize: new Y.Size(90,90)});
+  var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=管|00BFFF|000000", {iconSize: new Y.Size(80,80)});
 
   var marker = new Y.Marker(current_location,{icon: icon,title: pin_info.name.value});
 
@@ -62,9 +60,6 @@ export function map_make_user_pin(map,pin_info,pin_box){
   }
 
   marker.bindInfoWindow('<div class="speech_bubble_box"><div class="speech_bubble_title"><a ' + url +  '  style="text-decoration: underline">' + pin_info.name.value + '</a></div><div class="speech_bubble_content">住所：' + pin_info.address.value + '</div><div class="speech_bubble_content">電話：' + pin_info.tel.value + '</div><div class="speech_bubble_content">FAX：' + pin_info.fax.value + '</div><div class="speech_bubble_content">' + pin_info.memo.value + '</div></div>');
-
-      // marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">' + pin_info.name.value +'</div><div class="speech_bubble_content">' + pin_info.status.value +'(' + pin_info.number.value +'台中、' + pin_info.empty_number.value +'台空き)</div><div class="speech_bubble_content">所在地：' + pin_info.address.value +'</div><div class="speech_bubble_content">賃料：' + pin_info.price.value +'円/月</div><div class="speech_bubble_content">備考：' + pin_info.memo.value +'</div></div>');
-  // marker.bindInfoWindow('<div class="speech_bubble_box"><div>aaaa</div><div>いいいいいい</div></div>');
 
   map.addFeature(marker);
 
@@ -82,60 +77,22 @@ export function map_make_parking_pin(map,pin_info,pin_box){
 
   var current_location = new Y.LatLng(pin_info.lat.value,pin_info.lon.value);
 
+  if (pin_info.status.value == "空き無し") {
+    var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=" + pin_info.symbol.value +  "|808080|000000", {iconSize: new Y.Size(80,80)});
+  } else {
+    var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=" + pin_info.symbol.value +  "|FF6666|000000", {iconSize: new Y.Size(80,80)});
+  }
 
-    var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=" + pin_info.symbol.value +  "|FF33CC|000000", {iconSize: new Y.Size(90,90)});
 
-    var marker = new Y.Marker(current_location,{icon: icon,title: pin_info.name.value});
+  var marker = new Y.Marker(current_location,{icon: icon,title: pin_info.name.value});
 
-    marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">' + pin_info.name.value +'</div><div class="speech_bubble_content">' + pin_info.status.value +'(' + pin_info.number.value +'台中、' + pin_info.empty_number.value +'台空き)</div><div class="speech_bubble_content">所在地：' + pin_info.address.value +'</div><div class="speech_bubble_content">賃料：' + pin_info.price.value +'円/月</div><div class="speech_bubble_content">' + pin_info.memo.value +'</div></div>');
+  marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">' + pin_info.name.value +'</div><div class="speech_bubble_content">' + pin_info.status.value +'(' + pin_info.number.value +'台中、' + pin_info.empty_number.value +'台空き)</div><div class="speech_bubble_content">所在地：' + pin_info.address.value +'</div><div class="speech_bubble_content">賃料：' + pin_info.price.value +'円/月</div><div class="speech_bubble_content">' + pin_info.memo.value +'</div></div>');
 
-    map.addFeature(marker);
+  map.addFeature(marker);
 
-    // // 作成したマーカーを保存
-    pin_box.push(marker);
-
-    // ピンの場所に移動……は、しない
-
-  // var marker = new Y.Marker(current_location);
-  // // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
-  // map.addFeature(marker);
-  //
-  // // // 作成したマーカーを保存
-  // pin_box.push(marker);
-  //
-  // // ピンの場所に移動
-  // map.panTo(current_location, true);
-
+  // // 作成したマーカーを保存
+  pin_box.push(marker);
 }
-// export function map_make_parking_pin(map,lat,lon,pin_box,icon_info,title_info,address_info,price_info,memo_info){
-//
-//   var current_location = new Y.LatLng(lat.value,lon.value);
-//
-//
-//     var icon = new Y.Icon("https://chart.googleapis.com/chart?chst=d_map_pin_letter_withshadow&chld=" + icon_info.value +  "|FF33CC|000000", {iconSize: new Y.Size(90,90)});
-//
-//     var marker = new Y.Marker(current_location,{icon: icon,title: title_info.value});
-//
-//     marker.bindInfoWindow('<div data-controller="make-speech-bubble" class="speech_bubble_box"><div class="speech_bubble_title">aaaa</div><div class="speech_bubble_content">いいいいいい</div><div class="speech_bubble_content">uuuuうううううううう</div><div class="speech_bubble_content">いいえええええええいいいい</div></div>');
-//
-//     map.addFeature(marker);
-//
-//     // // 作成したマーカーを保存
-//     pin_box.push(marker);
-//
-//     // ピンの場所に移動……は、しない
-//
-//   // var marker = new Y.Marker(current_location);
-//   // // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
-//   // map.addFeature(marker);
-//   //
-//   // // // 作成したマーカーを保存
-//   // pin_box.push(marker);
-//   //
-//   // // ピンの場所に移動
-//   // map.panTo(current_location, true);
-//
-// }
 
 export function map_btn_setting(flg,msg,lat,lon,btn_set,btn_reset,btn_save){
   msg.text=""//メッセージ枠は空欄に戻す

@@ -26,8 +26,11 @@ class UsersController < ApplicationController
   #対象業者の駐車場状況確認画面
   #……ログインしていなくても、誰でも見れる
   def parking_info
-    #「空き有り」「空き予定」のみ表示（「空き無し」は表示しない）
-    @parkings = @user.parkings.where("status in (0,1)")
+
+    #「空き有り」「空き予定」「空き無し」の全てを表示（「空き無し」は灰色のピンとする……js側で処理）
+    @parkings = @user.parkings
+    # #「空き有り」「空き予定」のみ表示（「空き無し」は表示しない）
+    # @parkings = @user.parkings.where("status in (0,1)")
   end
 
   private
