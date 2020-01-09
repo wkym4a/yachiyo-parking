@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h3 class="form_title"><%= current_user.name.to_s %>の駐車場一覧</h3>
-<%= link_to '新規駐車場', new_parking_path , class: 'btn-primary btn-sm line_content_btn_3'%>
+<div class="line_info">
+  <%= link_to '新規駐車場作成', new_parking_path , class: 'btn btn-primary btn_new_parking'%>  
+</div>
+
 
 <table class="table_box">
     <tr class= "table_title_row">

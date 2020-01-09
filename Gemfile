@@ -31,6 +31,9 @@ gem 'font-awesome-rails'
 #enum用
 gem 'enum_help'
 
+#qrコード表示用
+gem 'rqrcode'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
