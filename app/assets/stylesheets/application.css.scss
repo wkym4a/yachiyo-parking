@@ -91,7 +91,7 @@
 
    height: 40px;
  }
- .line_content_1,.line_content_2,.line_content_2_large_interval{
+ .line_content_1,.line_content_2,.line_content_3,.line_content_4,.line_content_2_large_interval{
    position: absolute;
    top: 12px;
  }
@@ -100,6 +100,12 @@
  }
  .line_content_2{
    left: 120px;
+ }
+ .line_content_3{
+   left: 210px;
+ }
+ .line_content_4{
+   left: 300px;
  }
  .line_content_2_large_interval{
    left: 180px;
