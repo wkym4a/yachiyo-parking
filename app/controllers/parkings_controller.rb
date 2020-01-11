@@ -8,7 +8,7 @@ class ParkingsController < ApplicationController
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @parkings = Parking.all.where(user_id: current_user.id)
+    @parkings = Parking.all.where(user_id: current_user.id).order(:symbol)
   end
 
   def show

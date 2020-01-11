@@ -63,7 +63,7 @@
       </div>
 
       <div class="line_info">
-        <%= form.label "住所" ,class: "line_content_1" %>
+        <%= form.label "住所" ,class: "line_content_1 input_long_words" %>
         <%= form.text_field :address ,class: "line_content_2_large_interval",maxlength: 255 ,:data => {:target => "set-pin.address"}%>
       </div>
 
@@ -82,21 +82,21 @@
 
       <div class="line_info">
         <%= form.label "ホームページアドレス" ,class: "line_content_1" %>
-        <%= form.text_field :url ,class: "line_content_2_large_interval",maxlength: 4096 %>
+        <%= form.text_field :url ,class: "line_content_2_large_interval input_long_words",maxlength: 4096 %>
       </div>
 
-      <div class="line_info">
+      <div class="line_info_multiline">
         <%= form.label "備考",class: "line_content_1" %>
-        <%= form.text_area :memo ,class: "line_content_2_large_interval"%>
+        <%= form.text_area :memo ,class: "line_content_2_large_interval input_text_content"%>
       </div>
 
       <div class="line_info">
-        <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn_3' ,:data => {:target => "set-pin.btn_save"} %>
-        <%= link_to "重要情報変更画面へ", edit_user_registration_path(@user.id), class: 'btn btn-primary line_content_btn'  %>
+        <%= form.submit  "登録" , class: 'btn btn-primary line_content_1' ,:data => {:target => "set-pin.btn_save"} %>
+        <%= link_to "重要情報変更画面へ", edit_user_registration_path(@user.id), class: 'btn btn-primary line_content_2'  %>
       </div>
 
       <div class="line_info">
-        <%= link_to "駐車場画面へ", parkings_path, class: 'btn btn-primary line_content_btn'  %>
+        <%= link_to "駐車場画面へ", parkings_path, class: 'btn btn-primary line_content_1'  %>
       </div>
     </span>
   <% end %>

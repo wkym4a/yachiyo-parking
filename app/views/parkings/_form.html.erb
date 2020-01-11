@@ -75,46 +75,51 @@
     </div>
 
     <div class="line_info">
-      <%= form.label "住所" ,class: "line_content_1" %>
+      <%= form.label "住所" ,class: "line_content_1 input_long_words" %>
       <%= form.text_field :address ,class: "line_content_2_large_interval",maxlength: 255 ,:data => {:target => "set-pin.address"}%>
     </div>
 
     <div class="line_info">
       <%= form.label "賃料",class: "line_content_1" %>
-      <%= form.number_field :price ,class: "line_content_2_large_interval"%>
+      <span class = "line_content_2_large_interval">
+        <%= form.number_field :price %>円/月
+      </span>
+
     </div>
 
-    <div class="line_info">
+    <div class="line_info_multiline">
       <%= form.label "備考(表示用）",class: "line_content_1" %>
-      <%= form.text_field :memo ,class: "line_content_2_large_interval"%>
+      <%= form.text_field :memo ,class: "line_content_2_large_interval input_text_content"%>
     </div>
 
-    <div class="line_info">
+    <div class="line_info_multiline">
       <%= form.label "備考(管理用、非表示)",class: "line_content_1" %>
-      <%= form.text_area :managing_memo ,class: "line_content_2_large_interval"%>
+      <%= form.text_area :managing_memo ,class: "line_content_2_large_interval input_text_content"%>
     </div>
 
     <div class="line_info">
       <%= form.label "区画数",class: "line_content_1" %>
-      <%= form.number_field :number ,class: "line_content_2_large_interval"%>
+      <span class = "line_content_2_large_interval">
+        <%= form.number_field :number %>台
+      </span>
     </div>
 
     <div class="line_info">
       <%= form.label "空き数",class: "line_content_1" %>
-      <%= form.number_field :empty_number ,class: "line_content_2_large_interval"%>
+      <span class = "line_content_2_large_interval">
+        <%= form.number_field :empty_number %>台
+      </span>
     </div>
 
     <div class="line_info">
       <%= form.label "状態",class: "line_content_1" %>
       <%= form.select :status, Parking.statuses.keys.map{|k| [I18n.t("enums.parking.status.#{k}"),k]} , {} ,class: "line_content_2_large_interval"%>
-      <%= form.submit  "登録" , class: 'btn btn-primary line_content_btn' ,:data => {:target => "set-pin.btn_save"} %>
+
       <%# <%= form.select :status, Parking.statuses.keys.to_a, {} ,class: "line_content_2_large_interval"%>
     </div>
 
-    </div>
-
     <div class="line_info">
-
+      <%= form.submit  "登録" , class: 'btn btn-primary line_content_1' ,:data => {:target => "set-pin.btn_save"} %>
     </div>
 
   </span>
