@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_05_100448) do
+ActiveRecord::Schema.define(version: 2020_02_02_053040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_01_05_100448) do
     t.float "lat", null: false
     t.float "lon", null: false
     t.integer "price", null: false
-    t.string "memo", limit: 400, null: false
+    t.text "memo", null: false
     t.text "managing_memo", null: false
     t.integer "number", null: false
     t.integer "empty_number", null: false

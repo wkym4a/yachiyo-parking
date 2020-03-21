@@ -1,6 +1,6 @@
 <!-- メッセージとか -->
-<p id="notice"><%= notice %></p>
-<%= render 'layouts/show_danger_msg' %>
+<p id="notice_msg"><%= render 'layouts/show_notice_msg' %></p>
+<p id="danger_msg"><%= render 'layouts/show_danger_msg' %></p>
 
 <%= form_with(model: parking, local: true) do |form| %>
 
@@ -89,7 +89,7 @@
 
     <div class="line_info_multiline">
       <%= form.label "備考(表示用）",class: "line_content_1" %>
-      <%= form.text_field :memo ,class: "line_content_2_large_interval input_text_content"%>
+      <%= form.text_area :memo ,class: "line_content_2_large_interval input_text_content"%>
     </div>
 
     <div class="line_info_multiline">

@@ -1,8 +1,10 @@
-<p id="notice"><%= notice %></p>
+<!-- メッセージとか -->
+<p id="notice_msg"><%= render 'layouts/show_notice_msg' %></p>
+<p id="danger_msg"><%= render 'layouts/show_danger_msg' %></p>
 
 <h3 class="form_title"><%= current_user.name.to_s %>の駐車場一覧</h3>
 <div class="line_info">
-  <%= link_to '新規駐車場作成', new_parking_path , class: 'btn btn-primary btn_new_parking'%>  
+  <%= link_to '新規駐車場作成', new_parking_path , class: 'btn btn-primary btn_new_parking'%>
 </div>
 
 
