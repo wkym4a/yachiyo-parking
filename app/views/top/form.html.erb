@@ -1,5 +1,107 @@
-<h3>管理業者用ページ</h3>
+<h3>八千代台の不動産屋が作った</h3>
+<h3>月極駐車場管理アプリ</h3>
 
+月極駐車場についてのお客様からの問い合わせで、こんな問題が生じてはいませんか？
+
+<div class="">
+  ①問い合わせの駐車場が、どれだが分からない。
+  <%= image_tag '/img/problem1.png'%>
+</div>
+
+<div class="">
+  ②別の駐車場に誘導できたのに、見落としていた。
+  <%= image_tag '/img/problem2.png'%>
+
+</div>
+
+<div class="">
+  ③そもそも忙しいので、電話応対を減らしたい。
+  <%= image_tag '/img/problem3.png'%>
+
+</div>
+
+
+
+そこで……
+駐車場の空き状況・賃料確認は
+アプリに丸投げ
+しませんか？
+<br>
+
+
+<% if not user_signed_in? %>
+  <br><br>
+  <div class="line_info">
+    ──まずは、
+    <%= link_to "新規ユーザー登録", new_user_registration_path , class: 'btn btn-primary line_content_2 input_long_words' %>
+    <br><br><br>
+    ……登録済みの方は<%= link_to "ログイン", new_user_session_path %>してください。
+    <br>
+  </div>
+<% end %>
+
+<br><br>
+【ステップ１】<br>
+まずは、<%= link_to "ユーザー情報", edit_user_path(current_user.id), class: 'btn btn-primary'  %>を設定。<br>
+……【地図をダブルクリック→『座標→住所』ボタン】<br>
+または【住所を直接入力→『住所→座標』ボタン】で店舗の場所を設定し、<br>
+店舗情報を『登録』してください
+（『駐車場表示画面』では、この『店舗の場所』を中心に地図を表示します）。
+
+<br><br><br><br>
+【ステップ2】<br>
+続いて、<%= link_to '駐車場を登録', new_parking_path , class: 'btn btn-primary btn_new_parking'%>。<br>
+『ステップ1』と同様に、駐車場の位置を決定。<br>
+また『賃料』『空き状態』なども設定してください<br>
+……登録した駐車場は<%= link_to "駐車場一覧", parkings_path, class: 'btn btn-primary '  %>から確認、変更可能です。
+
+<br><br><br><br>
+この２ステップで『駐車場表示画面』は完成。<br>
+
+↓↓こんなふうに↓↓
+<span data-controller="show-parkings">
+
+  <%= hidden_field_tag :lat,@user.lat ,:data => {:target => "show-parkings.lat"} %>
+  <%= hidden_field_tag :lon,@user.lon ,:data => {:target => "show-parkings.lon"} %>
+  <%= hidden_field_tag :name,@user.name ,:data => {:target => "show-parkings.name"} %>
+  <%= hidden_field_tag :address,@user.address ,:data => {:target => "show-parkings.address"} %>
+  <%= hidden_field_tag :tel,@user.tel ,:data => {:target => "show-parkings.tel"} %>
+  <%= hidden_field_tag :fax,@user.fax ,:data => {:target => "show-parkings.fax"} %>
+  <%= hidden_field_tag :url,@user.url ,:data => {:target => "show-parkings.url"} %>
+  <%= hidden_field_tag :memo,@user.memo ,:data => {:target => "show-parkings.memo"} %>
+
+  <% @parkings.each do |parking| %>
+    <%= hidden_field_tag :parkings_symbol,parking.symbol ,:data => {:target => "show-parkings.parkings_symbol"} %>
+    <%= hidden_field_tag :parkings_lat,parking.lat ,:data => {:target => "show-parkings.parkings_lat"} %>
+    <%= hidden_field_tag :parkings_lon,parking.lon ,:data => {:target => "show-parkings.parkings_lon"} %>
+    <%= hidden_field_tag :parkings_name,parking.name ,:data => {:target => "show-parkings.parkings_name"} %>
+    <%= hidden_field_tag :parkings_status,parking.status_i18n ,:data => {:target => "show-parkings.parkings_status"} %>
+    <%= hidden_field_tag :parkings_number,parking.number ,:data => {:target => "show-parkings.parkings_number"} %>
+    <%= hidden_field_tag :parkings_empty_number,parking.empty_number ,:data => {:target => "show-parkings.parkings_empty_number"} %>
+    <%= hidden_field_tag :parkings_address,parking.address ,:data => {:target => "show-parkings.parkings_address"} %>
+    <%= hidden_field_tag :parkings_price,parking.price ,:data => {:target => "show-parkings.parkings_price"} %>
+    <%= hidden_field_tag :parkings_memo,parking.memo ,:data => {:target => "show-parkings.parkings_memo"} %>
+  <% end %>
+
+  <div  id = "map"  class = "top_map" data-target="show-parkings.map">
+  </div>
+
+</span>
+
+・店舗（<span class="pin_sample_user"></span>）<br>
+・「空き有り」「空き予定」である駐車場（<span class="pin_sample_empty"></span>）<br>
+・現状「空き無し」な駐車場（<span class="pin_sample_not_empty"></span>）<br>
+が表示されるようになります<br>
+（駐車場の📍は、クリックすると『賃料』『所在地』などステップ2で設定した詳細情報が表示されます）。
+
+
+
+<div>
+・<span class="pin_sample_empty"></span>→「空き有り」「空き予定」　　　　　　
+・<span class="pin_sample_not_empty"></span>→「空き無し」
+
+
+<br><br><br><br><br><br><br><br>
 <% if user_signed_in? %>
   <h4>ログインしています。</h4>
 
@@ -16,7 +118,7 @@
   </div>
 
 <% else %>
-  <h4>まずはログインしてください。</h4>
+  <!-- <h4>まずはログインしてください。</h4> -->
 
 
 <% end %>

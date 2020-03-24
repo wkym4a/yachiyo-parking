@@ -19,24 +19,26 @@
 
     <% if action_name != "parking_info" && action_name != "parking_info_qr"  %>
     <%# 閲覧用の【駐車場情報画面】以外での表示 %>
-      <% if user_signed_in? %>
+      <div class="parking-info-1">
+        <% if user_signed_in? %>
 
-        <span>「<%= current_user.name.to_s %>」でログインしています。</span>
-        <%= link_to "ログアウトする", destroy_user_session_path, method: :delete %>
+          <span>「<%= current_user.name.to_s %>」でログインしています。</span>
+          <%= link_to "ログアウトする", destroy_user_session_path, method: :delete %>
 
-        <%= link_to "ユーザー情報", edit_user_path(current_user.id), class: 'btn btn-primary'  %>
-        <%= link_to "駐車場一覧", parkings_path, class: 'btn btn-primary '  %>
-        <%= link_to "駐車場表示画面へ", parking_info_user_path(current_user.id), class: 'btn btn-primary '  %>
-        <%= link_to "「表示画面」のQRコード", parking_info_qr_user_path(current_user.id), class: 'btn btn-primary ',target: "_blank" %>
+          <%= link_to "ユーザー情報", edit_user_path(current_user.id), class: 'btn btn-primary'  %>
+          <%= link_to "駐車場一覧", parkings_path, class: 'btn btn-primary '  %>
+          <%= link_to "駐車場表示画面へ", parking_info_user_path(current_user.id), class: 'btn btn-primary '  %>
+          <%= link_to "「表示画面」のQRコード", parking_info_qr_user_path(current_user.id), class: 'btn btn-primary ',target: "_blank" %>
 
-      <% else %>
+        <% else %>
 
-        <a>ログインしていません</a>
-        <%= link_to "ログインする", new_user_session_path %>
-        <br><br>
-        <%= link_to "新規ユーザー", new_user_registration_path %>
+          <a>ログインしていません</a>
+          <%= link_to "ログインする", new_user_session_path %>
+          <br><br>
+          <%= link_to "新規ユーザー", new_user_registration_path %>
 
-      <% end %>
+        <% end %>
+      </div>
 
       <%= yield %>
     <% else %>
