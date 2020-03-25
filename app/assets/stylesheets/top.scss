@@ -2,7 +2,75 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.btn_about_company{
+  margin-left: 80px;
+  background-color: white;
+  color: #55b8dc;
+  padding: 2px 10px 2px 10px;
+  font-weight:bolder;
+  border-radius:5px;
+}
+.btn_about_company:visited{
+  color: #55b8dc;
+}
+
 .top_map{
   height:300px;
   width: 700px;
+}
+
+.manual_title1{
+  margin-top: 20px;
+  margin-left: 40px;
+}
+.manual_title2{
+  text-align: center;
+  // margin-left: 40px;
+  // margin-right: 40px;
+  font-size: 48px;
+}
+
+.manual_text{
+  margin-left: 20px;
+  font-size: 22px;
+}
+.manual_text_details{
+  margin-left: 30px;
+  font-size: 18px;
+}
+.emphasis_text{
+  color: red;
+}
+.emphasis_text:visited{
+  color: red;
+}
+
+div.manual_container{
+  margin-left: 20px;
+  margin-right: 10px;
+
+}
+
+.manual_box{
+  min-width: 500px;
+  text-align: left;
+  // max-width: 800px;
+
+}
+.manual_box_text{
+  margin-top: 14px;
+  margin-left: 6px;
+  font-size: 20px;
+}
+.manual_picture{
+  // min-width: 500px;
+  width: 100%;
+}
+.manual_picture_image{
+  width: 100%;
+  object-fit: contain;
+}
+.manual_picture_image_signboard{
+  width: 700px;
+  object-fit: contain;
 }

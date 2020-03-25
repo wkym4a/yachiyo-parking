@@ -19,7 +19,7 @@
 
     <% if action_name != "parking_info" && action_name != "parking_info_qr"  %>
     <%# 閲覧用の【駐車場情報画面】以外での表示 %>
-      <div class="parking-info-1">
+      <div class="head_bar">
         <% if user_signed_in? %>
 
           <span>「<%= current_user.name.to_s %>」でログインしています。</span>
@@ -33,11 +33,12 @@
         <% else %>
 
           <a>ログインしていません</a>
-          <%= link_to "ログインする", new_user_session_path %>
-          <br><br>
-          <%= link_to "新規ユーザー", new_user_registration_path %>
+          <%= link_to "ログインする", new_user_session_path, class: 'btn btn-primary ' %>
+          <%= link_to "新規ユーザー", new_user_registration_path , class: 'btn btn-primary '%>
 
         <% end %>
+
+        <%= link_to "このアプリについて", root_path, class: 'btn_about_company' %>
       </div>
 
       <%= yield %>

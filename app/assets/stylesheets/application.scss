@@ -48,9 +48,11 @@
  }
 
  .head_bar{
-   height: 50px;
-   width: 100%;
-   background-color: #DDFFFF;
+   height: 49px;
+   min-width: 1200px;
+   padding: 5px 0 0;
+   background-color: #55b8dc;
+   color: #fff;
  }
  .head_title{
    display:inline-block;
