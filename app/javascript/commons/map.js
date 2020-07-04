@@ -2,26 +2,37 @@
 // 地図の初期設定
 export function map_default_setting(map,lat,lon){
 
-  map.drawMap(new Y.LatLng(lat.value, lon.value), 17, Y.LayerSetId.NORMAL);
+  // map.drawMap(new Y.LatLng(lat.value, lon.value), 17, Y.LayerSetId.NORMAL);
 
-  var center = new Y.CenterMarkControl
-  var control = new Y.LayerSetControl();
-  var sliderzoom = new Y.SliderZoomControlVertical();
-  var scale = new Y.ScaleControl();
-  var searchcontrol = new Y.SearchControl();
-  map.addControl(center);
-  map.addControl(control);
-  map.addControl(sliderzoom);
+  // var center = new Y.CenterMarkControl;
+
+  map.addControl(new mapboxgl.NavigationControl());
+  // var control = new Y.LayerSetControl();
+
+  var scale = new mapboxgl.ScaleControl({
+    maxWidth: 120,
+    unit: 'metric'
+  });
   map.addControl(scale);
-  map.addControl(searchcontrol);
+  // var sliderzoom = new Y.SliderZoomControlVertical();
+  // var scale = new Y.ScaleControl();
+  // var searchcontrol = new Y.SearchControl();
+  // map.addControl(center);
+  // map.addControl(control);
+  // map.addControl(sliderzoom);
+  // map.addControl(scale);
+  // map.addControl(searchcontrol);
 
 }
 
 // 地図から📍を消す
 export function map_delete_pins(map,pin_box){
   if(pin_box.length > 0){
+
+
     for (var i = 0; i < pin_box.length; i++) {
-      map.removeFeature(pin_box[i]);
+      pin_box[i].remove();
+      // map.removeFeature(pin_box[i]);
     }
       pin_box = [];
   }
@@ -30,17 +41,23 @@ export function map_delete_pins(map,pin_box){
 // 地図に📍を一つ作る
 export function map_make_one_pin_no_content(map,lat,lon,pin_box){
 
-  var current_location = new Y.LatLng(lat.value,lon.value);
+  var marker = new mapboxgl.Marker();
+  marker.setLngLat([lon,lat]);
+  marker.addTo(map);
+  
+  var current_location = new mapboxgl.LngLat([lon,lat]);
+  // var current_location = new Y.LatLng(lat.value,lon.value);
 
-  var marker = new Y.Marker(current_location);
-  // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
-  map.addFeature(marker);
+  // var marker = new Y.Marker(current_location);
+  // // var marker = new Y.Marker(current_location,{title: .pins[i].pin_name});
+  // map.addFeature(marker);
 
   // // 作成したマーカーを保存
   pin_box.push(marker);
 
   // ピンの場所に移動
-  map.panTo(current_location, true);
+  map.panTo(current_location);
+  // map.panTo(current_location, true);
 
 }
 
