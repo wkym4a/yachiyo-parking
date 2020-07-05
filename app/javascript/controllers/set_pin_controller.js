@@ -52,36 +52,41 @@ export default class extends Controller {
       map_delete_pins(this.map,pin_box)
 
       // ピンを建てる
-      map_make_one_pin_no_content(this.map,Number(this.latTarget.value),Number(this.lonTarget.value))
+      map_make_one_pin_no_content(this.map,Number(this.latTarget.value),Number(this.lonTarget.value),pin_box)
 
       // // ボタン設定を行う
-      // map_btn_setting(latlng_decided_flg,this.msgTarget,this.latTarget,this.lonTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget);
+      map_btn_setting(latlng_decided_flg,this.msgTarget,this.latTarget,this.lonTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget);
 
       // /////////////////////////////////////
-      // var lat_dbc = this.latTarget
-      // var lon_dbc = this.lonTarget
-      // var address_dbc = this.addressTarget
-      // var map_dbc = this.map
+      var lat_dbc = this.latTarget
+      var lon_dbc = this.lonTarget
+      var address_dbc = this.addressTarget
+      var map_dbc = this.map
 
-      //     //地図がダブルクリックされた時の処理
-      //     this.map.bind('dblclick', function(e) {
+          //地図がダブルクリックされた時の処理
+          this.map.on('dblclick', function(e) {
+          // this.map.bind('dblclick', function(e) {
 
-      //       // すでに座標が確定されている場合は、処理せず抜ける
-      //       if(latlng_decided_flg[0]==true){
-      //         return;
-      //         }
+            // すでに座標が確定されている場合は、処理せず抜ける
+            if(latlng_decided_flg[0]==true){
+              return;
+              }
 
-      //       lat_dbc.value = e.Lat;
-      //       lon_dbc.value = e.Lon;
-      //       address_dbc.value = ""//「住所」を初期化……「座標→住所」で設定し直すため
+            lat_dbc.value = e.lngLat.lat;
+            lon_dbc.value = e.lngLat.lng;
+            // lat_dbc.value = e.Lat;
+            // lon_dbc.value = e.Lon;
+            address_dbc.value = ""//「住所」を初期化……「座標→住所」で設定し直すため
 
-      //       //表示しているピンを消す(念の為、リロード時用？)
-      //       map_delete_pins(map_dbc,pin_box)
+            //表示しているピンを消す
+            map_delete_pins(map_dbc,pin_box)
 
-      //       // ピンを建てる
-      //       map_make_one_pin_no_content(map_dbc,lat_dbc,lon_dbc,pin_box)
+            // ピンを建てる
+            map_make_one_pin_no_content(map_dbc,e.lngLat.lat,e.lngLat.lng,pin_box)
+            // map_make_one_pin_no_content(map_dbc,lat_dbc,lon_dbc,pin_box)
 
-      //     });
+
+          });
 
     }
 

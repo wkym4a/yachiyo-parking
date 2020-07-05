@@ -45,7 +45,7 @@ export function map_make_one_pin_no_content(map,lat,lon,pin_box){
   marker.setLngLat([lon,lat]);
   marker.addTo(map);
   
-  var current_location = new mapboxgl.LngLat([lon,lat]);
+  var current_location = new mapboxgl.LngLat(lon,lat);
   // var current_location = new Y.LatLng(lat.value,lon.value);
 
   // var marker = new Y.Marker(current_location);
