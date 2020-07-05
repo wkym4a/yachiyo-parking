@@ -90,74 +90,75 @@ export default class extends Controller {
 
     }
 
-  //   // 「座標確定解除」処理
-  // reset_latlon(){
-  //   // まだ座標が確定されていない場合は、処理せず抜ける
-  //   if(latlng_decided_flg[0]==false){
-  //     return;
-  //   }
-  //   // ボタン設定を行う
-  //   map_btn_setting(latlng_decided_flg,this.msgTarget,this.latTarget,this.lonTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget);
+    // 「座標確定解除」処理
+  reset_latlon(){
+    // まだ座標が確定されていない場合は、処理せず抜ける
+    if(latlng_decided_flg[0]==false){
+      return;
+    }
+    // ボタン設定を行う
+    map_btn_setting(latlng_decided_flg,this.msgTarget,this.latTarget,this.lonTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget);
 
-  // }
+  }
 
-  // // 【座標→住所】による「座標確定」処理
-  // set_address_by_latlon(){
-  //   // すでに座標が確定されている場合は、処理せず抜ける
-  //   if(latlng_decided_flg[0]==true){
-  //     return;
-  //     }
+  // 【座標→住所】による「座標確定」処理
+  set_address_by_latlon(){
+    // すでに座標が確定されている場合は、処理せず抜ける
+    if(latlng_decided_flg[0]==true){
+      return;
+      }
 
-  //   // ----↓↓緯度,経度に関するバリデーション処理↓↓----
-  //   if((this.latTarget.value == "") || (this.lonTarget.value == "") ){
-  //     this.msgTarget.text='緯度、経度を入力してください。'
-  //     return;
-  //   }
+    // ----↓↓緯度,経度に関するバリデーション処理↓↓----
+    if((this.latTarget.value == "") || (this.lonTarget.value == "") ){
+      this.msgTarget.text='緯度、経度を入力してください。'
+      return;
+    }
 
-  //   if(isNaN(this.latTarget.value)==true || isNaN(this.lonTarget.value)==true ){
-  //     this.msgTarget.text="緯度、経度には数値を入力してください。"
-  //     return;
-  //   }
+    if(isNaN(this.latTarget.value)==true || isNaN(this.lonTarget.value)==true ){
+      this.msgTarget.text="緯度、経度には数値を入力してください。"
+      return;
+    }
 
-  //   if((this.latTarget.value < -90) || (this.latTarget.value > 90) ||
-  //    (this.lonTarget.value < -180) || (this.lonTarget.value > 180) ){
-  //     this.msgTarget.text='存在しない座標です。\n緯度は「-90」〜「90」、経度は「-180」〜「180」の範囲で入力してください。'
-  //     return;
-  //   }
-  //     // ----↑↑緯度,経度に関するバリデーション処理↑↑----
+    if((this.latTarget.value < -90) || (this.latTarget.value > 90) ||
+     (this.lonTarget.value < -180) || (this.lonTarget.value > 180) ){
+      this.msgTarget.text='存在しない座標です。\n緯度は「-90」〜「90」、経度は「-180」〜「180」の範囲で入力してください。'
+      return;
+    }
+      // ----↑↑緯度,経度に関するバリデーション処理↑↑----
 
-  //   //表示しているピンを消す(念の為、リロード時用？)
-  //   map_delete_pins(this.map,pin_box)
+    //表示しているピンを消す(念の為、リロード時用？)
+    map_delete_pins(this.map,pin_box)
 
-  //   // ピンを建てる+ピンの場所に移動
-  //   map_make_one_pin_no_content(this.map,this.latTarget,this.lonTarget,pin_box)
+    // ピンを建てる+ピンの場所に移動
+    map_make_one_pin_no_content(this.map,Number(this.latTarget.value),Number(this.lonTarget.value),pin_box)
+    // map_make_one_pin_no_content(this.map,this.latTarget,this.lonTarget,pin_box)
 
-  //   // 住所を表示する
-  //   map_set_address(this.msgTarget,this.latTarget,this.lonTarget,this.addressTarget)
+    // 住所を表示する
+    map_set_address(this.msgTarget,this.latTarget,this.lonTarget,this.addressTarget)
 
-  //   // ボタン設定を行う
-  //   map_btn_setting(latlng_decided_flg,this.msgTarget,this.latTarget,this.lonTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget);
-  // }
+    // ボタン設定を行う
+    map_btn_setting(latlng_decided_flg,this.msgTarget,this.latTarget,this.lonTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget);
+  }
 
-  //   // 【住所→座標】による「座標確定」処理
-  //   set_latlon_by_address(){
-  //     // すでに座標が確定されている場合は、処理せず抜ける
-  //     if(latlng_decided_flg[0]==true){
-  //       return;
-  //       }
+  // 【住所→座標】による「座標確定」処理
+  set_latlon_by_address(){
+    // すでに座標が確定されている場合は、処理せず抜ける
+    if(latlng_decided_flg[0]==true){
+      return;
+      }
 
-  //     // ----↓↓緯度,経度に関するバリデーション処理↓↓----
-  //     // 住所が存在しない場合は、エラーメッセージを表示して抜ける
-  //     if(this.addressTarget.value == ""){
-  //       this.msgTarget.text="住所を入力してください。";
-  //       return;
-  //     }
-  //     // ----↑↑緯度,経度に関するバリデーション処理↑↑----
+    // ----↓↓緯度,経度に関するバリデーション処理↓↓----
+    // 住所が存在しない場合は、エラーメッセージを表示して抜ける
+    if(this.addressTarget.value == ""){
+      this.msgTarget.text="住所を入力してください。";
+      return;
+    }
+    // ----↑↑緯度,経度に関するバリデーション処理↑↑----
 
 
-  //     // 住所からの座標設定を行う
-  //     map_set_latlon(latlng_decided_flg,this.map,this.msgTarget,this.latTarget,this.lonTarget,this.addressTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget,pin_box);
+    // 住所からの座標設定を行う
+    map_set_latlon(latlng_decided_flg,this.map,this.msgTarget,this.latTarget,this.lonTarget,this.addressTarget,this.btn_setTargets,this.btn_resetTarget,this.btn_saveTarget,pin_box);
 
-  //   }
+  }
 
 }

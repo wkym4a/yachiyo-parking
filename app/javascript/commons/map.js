@@ -179,21 +179,23 @@ export function map_set_latlon(flg,map,msg,lat,lon,address,btn_sets,btn_reset,bt
       lon.value =ydf.features[0]["latlng"]["Lon"];
 
       ////// ↓マーカー作成→既存マーカー削除→作成したメーカーを設置→作成マーカーを保存
-      var current_location = new Y.LatLng(lat.value,lon.value)
-
-      var marker = new Y.Marker(current_location);
+      var current_location = new mapboxgl.LngLat(lon.value,lat.value);
+      // var current_location = new Y.LatLng(lat.value,lon.value)
+      // var marker = new Y.Marker(current_location);
 
       //表示しているピンを消す
       map_delete_pins(map,pin_box)
 
       // 新たなピンを表示
-      map.addFeature(marker);
+      map_make_one_pin_no_content(map,lat.value,lon.value,pin_box)
+      // map.addFeature(marker);
 
-      // // 作成したピンを保存
-      pin_box.push(marker);
+      // // // 作成したピンを保存
+      // pin_box.push(marker);
 
       // ピンの場所に移動
-      map.panTo(current_location, true);
+      map.panTo(current_location);
+      // map.panTo(current_location, true);
       ////// ↑マーカー作成→既存マーカー削除→作成したメーカーを設置→作成マーカーを保存
 
       // ボタン設定を行う
