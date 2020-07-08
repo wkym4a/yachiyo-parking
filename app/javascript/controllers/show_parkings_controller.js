@@ -21,7 +21,7 @@ export default class extends Controller {
         /* 地図の初期緯度経度[lng,lat] */
         center: [Number(this.lonTarget.value), Number(this.latTarget.value)],
         /* 地図の初期ズームレベル */
-        zoom: 17
+        zoom: 15
       });
       // this.map = new Y.Map(this.mapTarget.id,{configure : {
       //             scrollWheelZoom : true
