@@ -13,8 +13,8 @@ var latlng_decided_flg
 export default class extends Controller {
   static targets = ["decided_flg","map","lat","lon","btn_set","btn_reset","address","btn_save","msg" ]
 
-  initialize() {
-    // connect(e) {
+  // initialize() {
+    connect(e) {
 
       //add for mapbox
       mapboxgl.accessToken = 'pk.eyJ1Ijoid2t5bTRhIiwiYSI6ImNrOTc0YnZpZzEwOXkzZW8xZjhrc3VxMTgifQ.FSjecqZ_pzwIEgPzBfsuoQ';

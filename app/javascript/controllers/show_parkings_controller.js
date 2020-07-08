@@ -11,9 +11,21 @@ export default class extends Controller {
 
     connect(e) {
 
-      this.map = new Y.Map(this.mapTarget.id,{configure : {
-                  scrollWheelZoom : true
-                }});
+      //add for mapbox
+      mapboxgl.accessToken = 'pk.eyJ1Ijoid2t5bTRhIiwiYSI6ImNrOTc0YnZpZzEwOXkzZW8xZjhrc3VxMTgifQ.FSjecqZ_pzwIEgPzBfsuoQ';
+
+
+      this.map = new mapboxgl.Map({
+        container: this.mapTarget.id ,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        /* 地図の初期緯度経度[lng,lat] */
+        center: [Number(this.lonTarget.value), Number(this.latTarget.value)],
+        /* 地図の初期ズームレベル */
+        zoom: 17
+      });
+      // this.map = new Y.Map(this.mapTarget.id,{configure : {
+      //             scrollWheelZoom : true
+      //           }});
 
       // 地図の初期設定を行う
       map_default_setting(this.map,this.latTarget,this.lonTarget);
